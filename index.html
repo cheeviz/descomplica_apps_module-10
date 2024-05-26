@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Criação e Gerenciamento de um Repositório no GitHub</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="./favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,7 +19,7 @@
     body {
       box-sizing: border-box;
       background: #1b1b1b;
-      font-family: 'Roboto', sans-serif;
+      font-family: "Roboto", sans-serif;
       color: white;
     }
     .titulo {
@@ -43,24 +43,33 @@
   <body>
     <h1 class="titulo">IMAGENS - Atividade Pratica Aula 10</h1>
     <div class="imagem" id="image-container"></div>
+
+    <script id="images-data" type="application/json">
+      [
+        "./images/AI_generated.jpg",
+        "./images/ai-generated-7516267_960_720.jpg",
+        "./images/ai-generated-7573690_960_720.jpg",
+        "./images/ai-generated-7670979_960_720.jpg",
+        "./images/ai-generated-7670984_960_720.jpg",
+        "./images/ai-generated-8167450_1280.jpg",
+        "./images/beautiful-dreamy-aesthetic-landscape.jpg",
+        "./images/bright-dragonfly-with-neon-shades.jpg",
+        "./images/photorealistic-goat-nature.jpg",
+        "./images/wingedsheep_Nature_photograph_by_George_Lucas_and_Melissa_Groo__62f5a5b6-ba64-496f-8ff6-9d30fc57fca8.jpg"
+      ]
+    </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        fetch("images.json")
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error(res.statusText);
-            }
-            return res.json();
-          })
-          .then((images) => {
-            const container = document.getElementById("image-container");
-            images.forEach((image) => {
-              const img = document.createElement("img");
-              img.src = image;
-              img.alt = image.split("/").pop();
-              container.appendChild(img);
-            });
-          });
+        const imagesData = document.getElementById("images-data").textContent;
+        const images = JSON.parse(imagesData);
+        const container = document.getElementById("image-container");
+        images.forEach((image) => {
+          const img = document.createElement("img");
+          img.src = image;
+          img.alt = image.split("/").pop();
+          container.appendChild(img);
+        });
       });
     </script>
   </body>
